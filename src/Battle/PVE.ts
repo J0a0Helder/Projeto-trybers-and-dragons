@@ -9,19 +9,19 @@ export default class PVE extends Battle {
     super(player);
   }
 
-  private _battles(enemy: SimpleFighter | Fighter) {
-    while (this.player.lifePoints !== -1 && enemy.lifePoints !== -1) {
-      this.player.attack(enemy);
-      enemy.attack(this.player);
-    } // vi na monitoria da Dani e do Henrique
-  }
-
-  private _enemiesBattlesGenerator() {
-    this.enemies.map((enemy) => this._battles(enemy));
+  private _battles() {
+    while (this.player.lifePoints !== -1 && this.enemies.some(
+      (enemy) => enemy.lifePoints !== -1,
+    )) {
+      this.enemies.forEach((enemy) => {
+        this.player.attack(enemy);
+        enemy.attack(this.player);
+      });
+    } // vi na monitoria do Paz
   }
 
   fight(): number {
-    this._enemiesBattlesGenerator();
+    this._battles();
     return super.fight();
   }
 }

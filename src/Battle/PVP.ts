@@ -9,6 +9,7 @@ export default class PVP extends Battle {
   private _battles() {
     while (this.player1.lifePoints !== -1 && this.player2.lifePoints !== -1) {
       this.player1.attack(this.player2);
+      if (this.player2.lifePoints === -1) break;
       this.player2.attack(this.player1);
     } // vi na monitoria da Dani e do Henrique
   }
