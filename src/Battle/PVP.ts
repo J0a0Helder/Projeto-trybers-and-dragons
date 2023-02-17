@@ -2,19 +2,19 @@ import Fighter from '../Fighter';
 import Battle from './Battle';
 
 export default class PVP extends Battle {
-  constructor(public fighter1: Fighter, public fighter2: Fighter) {
-    super(fighter2);
+  constructor(private player1: Fighter, private player2: Fighter) {
+    super(player1);
   }
 
   private _battles() {
-    while (this.fighter1.lifePoints !== -1 && this.fighter2.lifePoints !== -1) {
-      this.fighter1.attack(this.fighter2);
-      this.fighter2.attack(this.fighter1);
+    while (this.player1.lifePoints !== -1 && this.player2.lifePoints !== -1) {
+      this.player1.attack(this.player2);
+      this.player2.attack(this.player1);
     } // vi na monitoria da Dani e do Henrique
   }
 
   fight(): number {
     this._battles();
-    return this.player.lifePoints === -1 ? -1 : 1;
+    return super.fight();
   }
 }
